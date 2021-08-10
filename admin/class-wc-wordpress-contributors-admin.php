@@ -123,7 +123,11 @@ class Wc_Wordpress_Contributors_Admin
 		wp_nonce_field('wc_wordpress_contributors_meta_action', 'wc_wordpress_contributors_meta_nonce');
 		ob_start();
 		$args = array( 
-			'fields' => array( 'display_name', 'id', 'user_login' ) 
+			'fields' => array( 
+				'display_name', 
+				'id', 
+				'user_login' 
+			) 
 		);
 		if( $users = get_users( $args ) ) {
 			$html .= '<p class="wc-authors-list">';

@@ -112,6 +112,12 @@ class Wc_Wordpress_Contributors_Public
 		// Check if we're inside the main loop in a single Post.
 		if ( is_singular() && in_the_loop() && is_main_query() ) {
 			$wc_contributors = get_post_meta( get_the_ID(), 'wc_contributors',true );
+
+			// If there is no contributor checked
+			if( !is_array( $wc_contributors ) ){
+				return;
+			}
+
 			$userDisplay = "<div class='wc-contributor-list'><span>Contributors:</span>"; 
 			$userDisplay .= "<ul>";
 			foreach ($wc_contributors as $key => $wc_contributor) {
