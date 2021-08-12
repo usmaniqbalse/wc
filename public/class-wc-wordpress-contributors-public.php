@@ -74,7 +74,7 @@ class Wc_Wordpress_Contributors_Public
 		 * class.
 		 */
 
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wc-wordpress-contributors-public.css', array(), $this->version, 'all');
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wc-wordpress-contributors-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -97,7 +97,7 @@ class Wc_Wordpress_Contributors_Public
 		 * class.
 		 */
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wc-wordpress-contributors-public.js', array('jquery'), $this->version, false);
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wc-wordpress-contributors-public.js', array('jquery'), $this->version, false );
 	}
 	/**
 	 * Display the contributors under the posts.

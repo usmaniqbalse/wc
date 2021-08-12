@@ -174,7 +174,7 @@ class Wc_Wordpress_Contributors {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_filter( 'the_content', $plugin_public, 'wc_wordpress_contributors_filter_the_content', 1 );
+		$this->loader->add_filter( 'the_content', $plugin_public, 'wc_wordpress_contributors_filter_the_content', 10, 1 );
 
 	}
 

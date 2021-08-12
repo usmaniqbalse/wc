@@ -73,7 +73,7 @@ class Wc_Wordpress_Contributors_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */ 
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wc-wordpress-contributors-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wc-wordpress-contributors-admin.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Wc_Wordpress_Contributors_Admin
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */ 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wc-wordpress-contributors-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wc-wordpress-contributors-admin.js', array('jquery'), $this->version, false );
 	}
 	/**
 	 * Function for register the custom meta for the Posts
@@ -104,9 +104,9 @@ class Wc_Wordpress_Contributors_Admin
 	 * @param  void
 	 * @return void
 	 */
-	function register_wc_wordpress_contributors_posts_meta()
+	public function register_wc_wordpress_contributors_posts_meta()
 	{
-		add_meta_box('wc-wordpress-contributors-meta', __('Contributors', 'wc-wordpress-contributors'), array($this, 'wc_wordpress_contributors_meta_display_callback'), 'post', 'advanced', 'high');
+		add_meta_box( 'wc-wordpress-contributors-meta', __( 'Contributors', 'wc-wordpress-contributors' ), array( $this, 'wc_wordpress_contributors_meta_display_callback' ), 'post', 'advanced', 'high' );
 	}
 	/**
 	 * Function for showing the  post
@@ -115,12 +115,12 @@ class Wc_Wordpress_Contributors_Admin
 	 * @param  void
 	 * @return object
 	 */
-	function wc_wordpress_contributors_meta_display_callback($post)
+	public function wc_wordpress_contributors_meta_display_callback()
 	{
 		global $post;
 		$html = '';
 		$wc_contributors = get_post_meta( $post->ID, 'wc_contributors',true );
-		wp_nonce_field('wc_wordpress_contributors_meta_action', 'wc_wordpress_contributors_meta_nonce');
+		wp_nonce_field( 'wc_wordpress_contributors_meta_action', 'wc_wordpress_contributors_meta_nonce' );
 		ob_start();
 		$args = array( 
 			'fields' => array( 
@@ -137,7 +137,7 @@ class Wc_Wordpress_Contributors_Admin
 			}
 			$html .= '</p>';
 		}
-		$output = ob_get_contents();
+		// $output = ob_get_contents();
 		ob_end_clean();
 		echo $html;
 	}
@@ -149,7 +149,7 @@ class Wc_Wordpress_Contributors_Admin
 	 * @param  int $post_id
 	 * @return object
 	 */
-	function register_wc_wordpress_contributors_posts_save_meta($post_id)
+	public function register_wc_wordpress_contributors_posts_save_meta($post_id)
 	{
 
 		// Check if nonce is set.
@@ -161,12 +161,12 @@ class Wc_Wordpress_Contributors_Admin
 		check_admin_referer( 'wc_wordpress_contributors_meta_action', 'wc_wordpress_contributors_meta_nonce' );
 
 		// If this is an autosave, our form has not been submitted, so we don't want to do anything.
-		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 			return;
 		}
 
 		// Check the user's permissions.
-		if (!current_user_can('edit_post', $post_id)) {
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}	
 
